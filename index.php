@@ -18,7 +18,7 @@ if (empty($language))
     <link href="img/icon2.ico" rel="shortcut icon" type="image/x-icon" />
 
     <title><?php 
-    require_once "functions/getdata.php";
+    // require_once "functions/getdata.php";
     $valuevariable  = get_value($language);
     echo $valuevariable["title"] ?></title>
 </head>
