@@ -1,3 +1,4 @@
+
 <?php
 $language = $_GET['lan'];
 if (empty($language))
