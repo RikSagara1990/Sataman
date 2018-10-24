@@ -10,13 +10,12 @@ if (empty($language))
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <h1>Test</h1>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="maukas fastfood food grill grilli ruoka cafe еда кафе гриль вкусно nice" />
     <meta name="description" content="Haminan sataman kahvilassa voimme maistua ja edullista välipalaa.Cafe in the port of Hamina, we can tasty and inexpensive snack.Кафе в порту Hamina, у нас можно вкусно и недорого перекусить." />
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href="img/icon2.ico" rel="shortcut icon" type="image/x-icon" />
-
     <title><?php 
     require_once "functions/getdata.php";
     $valuevariable  = get_value($language);
