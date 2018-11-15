@@ -2,7 +2,7 @@
 
   function connectDB () {
     global $mysqli;
-    $mysqli = new mysqli ("localhost", "mysql", "password", "Sataman");
+    $mysqli = new mysqli ("localhost", "riksagara", "592yqz666", "Sataman");
     $mysqli->query("SET NAMES 'utf-8'");
 
     if(!$mysqli)

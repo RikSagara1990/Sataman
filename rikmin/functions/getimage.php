@@ -6,8 +6,7 @@
  * @param  string $upload_dir       директория загрузки
  * @return array                    сообщение о ходе выполнения
  */
-$extensions = array('jpg', 'jpeg', 'png', 'gif'); //какие типы файлов разрешается загружать
-$upload_dir = '../img/food';  // папка для загрузки (создать на сервере)
+
     
     function uploadHandle($max_file_size = 1024, $valid_extensions = array(), $upload_dir = '.', $name)
     {
@@ -23,8 +22,9 @@ $upload_dir = '../img/food';  // папка для загрузки (созда�
                 // проверяем размер файла
                 if ($_FILES['loadlogo']['size'] < $max_file_size)
                 {
-          $file_name = $name .'.jpeg';  // переделать
+          $file_name = $name .'.jpeg'; 
                     $destination = $upload_dir .'/' . $file_name;
+
 
                     if (move_uploaded_file($_FILES['loadlogo']['tmp_name'], $destination))
                         $info = 'Файл успешно загружен';
@@ -63,7 +63,7 @@ $upload_dir = '../img/food';  // папка для загрузки (созда�
     }
 
     function loadimage($enname){
-        $extensions = array('jpg', 'jpeg', 'png', 'gif'); //какие типы файлов разрешается загружать
+        $extensions = array('jpg', 'jpeg'); //какие типы файлов разрешается загружать
         $upload_dir = '../img/food';  // папка для загрузки (создать на сервере)
         // $enname - задает имя файла
         $message = uploadHandle(8, $extensions, $upload_dir, $enname);

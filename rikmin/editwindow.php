@@ -39,16 +39,16 @@ if ($type == "food"){
     if ($var != "addfood"){
         $datamenu = get_datafood($var);};
     if ($var == "addfood"){
-        $datamenu["img"] = "../img/food/none.jpg";};
+        $datamenu["img"] = "img/food/none.jpg";};
     echo '<div id="editfoodmenu">
-        <form enctype="multipart/form-data" name="formeditfoodmenu" method="post" action="editwindow.php">
+        <form action="editwindow.php" enctype="multipart/form-data" name="formeditfoodmenu" method="POST">
         <center>
         <input type="hidden" name="foodid" value="'.$datamenu["Id"].'">
         <input type="hidden" name="img" value="'.$datamenu["img"].'">
         <h3>Изображение</h3>
         <input type="file" accept="image/*" name="loadlogo" id="loadlogo">
         </br>
-        <img class="imagefood" id="imagefood" src="'.$datamenu["img"].'">
+        <img class="imagefood" id="imagefood" src="../'.$datamenu["img"].'">
         </br>
         <h3>Финское название</h3><input class="name" type="text" name="FiName" value="'.$datamenu["nameFI"].'">
         </br>
@@ -80,6 +80,8 @@ if ($type == "food"){
 
 // Действия для кнопок
 
+
+// Изменение данных главной страницы 
 if(isset($_POST['inputchangevar'])){
     $fivalue = $_POST['fivalue'];
     $envalue = $_POST['envalue'];
@@ -93,6 +95,7 @@ if(isset($_POST['inputchangevar'])){
     window.close();
     </script>";}
 
+//дейстивие при изменение или добавление продукта
 if(isset($_POST['inputaddfood'])){
     $foodid = $_POST['foodid'];
     $finame = $_POST['FiName'];
@@ -104,27 +107,27 @@ if(isset($_POST['inputaddfood'])){
     $cost = $_POST['cost'];
     $img = $_POST['img'];
 
-    include("functions\getimage.php");
+    include("functions/getimage.php");
     if (!empty($foodid)) {
         if (!empty($_FILES['loadlogo']['name'])) {
             unlink($img);
             $img = loadimage($enname);
-            $changeimage = "`img`='$img',";
+            $img = substr_replace($img, null, 0, 3);
+            $changeimage = "`img`='$img',";  
         }
         else {
             $changeimage = "";
-            echo "<script>alert(\"переменная удалена\");</script>";
         }
         connectDB(); 
         $mysqli->query("UPDATE `foods` SET $changeimage `nameFI`='$finame', `nameEN`='$enname', `nameRU`='$runame', `descriptionFI`='$fidescription', `descriptionEN`='$endescription', `descriptionRU`='$rudescription', `cost`='$cost' WHERE `Id` = '$foodid';");
         closeDB();
-         echo "<script>alert(\"Форма НЕ работает\");</script>";
         echo "<script>alert(\"Меню изменено!\");
         window.opener.location.reload();
         window.close();
         </script>";}
     else {
         $img = loadimage($enname);
+        $img = substr_replace($img, null, 0, 3);
         connectDB();
         $mysqli->query("INSERT INTO `foods` (`img`, `nameFI`, `nameEN`, `nameRU`, `descriptionFI`, `descriptionEN`, `descriptionRU`, `cost`) VALUE ('$img', '$finame', '$enname', '$runame', '$fidescription', '$endescription', '$rudescription', '$cost');");
         closeDB();
@@ -133,9 +136,12 @@ if(isset($_POST['inputaddfood'])){
         window.close();
         </script>";}
         };
-
+//удаление продукта
 if(isset($_POST['inputdelete'])){
+    $img = $_POST['img'];
     $foodid = $_POST['foodid'];
+    $img = "../$img";
+    unlink($img);
     connectDB(); 
     $mysqli->query("DELETE FROM `foods` WHERE `Id` = '$foodid';");
     closeDB();

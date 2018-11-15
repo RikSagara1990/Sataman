@@ -120,19 +120,35 @@
                             break;
                     }}
                 else {
-                    for ($i = 0; $i <= count($datamenu); $i++){
-                    if(!empty($datamenu[$i]))
-                    echo '<div class="food" id="'.$datamenu[$i]["id"].'">
-                            <img class="imagefood" src="../'.$datamenu[$i]["img"].'" alt="'.$datamenu[$i]["name$language"].'" title="'.$datamenu[$i]["name$language"].'">
-                            <h2 class="name">'.$datamenu[$i]["name$language"].'</h2>
+
+                    foreach ($datamenu as $elementdatamenu){
+                    if(!empty($elementdatamenu))
+                    echo '<div class="food" id="'.$elementdatamenu["id"].'">
+                            <img class="imagefood" src="../'.$elementdatamenu["img"].'" alt="'.$elementdatamenu["name$language"].'" title="'.$elementdatamenu["name$language"].'">
+                            <h2 class="name">'.$elementdatamenu["name$language"].'</h2>
                             <div class="blockDescription">
-                                <p class="description">'.$datamenu[$i]["description$language"].'<p>
+                                <p class="description">'.$elementdatamenu["description$language"].'<p>
                             </div>
-                            <h2 class="cost">'.$datamenu[$i]["cost"].' &euro;</h2>
-                            <a class="button" id="editfood" onclick="editwindow(\'food\',\''.$datamenu[$i]["id"].'\');  return false;">
+                            <h2 class="cost">'.$elementdatamenu["cost"].' &euro;</h2>
+                            <a class="button" id="editfood" onclick="editwindow(\'food\',\''.$elementdatamenu["id"].'\');  return false;">
                                 <div>Изменить</div>
                             </a>
                         </div>';
+
+
+                    // for ($i = 0; $i <= count($datamenu); $i++){
+                    // if(!empty($datamenu[$i]))
+                    // echo '<div class="food" id="'.$datamenu[$i]["id"].'">
+                    //         <img class="imagefood" src="../'.$datamenu[$i]["img"].'" alt="'.$datamenu[$i]["name$language"].'" title="'.$datamenu[$i]["name$language"].'">
+                    //         <h2 class="name">'.$datamenu[$i]["name$language"].'</h2>
+                    //         <div class="blockDescription">
+                    //             <p class="description">'.$datamenu[$i]["description$language"].'<p>
+                    //         </div>
+                    //         <h2 class="cost">'.$datamenu[$i]["cost"].' &euro;</h2>
+                    //         <a class="button" id="editfood" onclick="editwindow(\'food\',\''.$datamenu[$i]["id"].'\');  return false;">
+                    //             <div>Изменить</div>
+                    //         </a>
+                    //     </div>';
                     }}
                 ?>
                 </br>
