@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Admin Panel"
-AuthUserFile C:/Users/RikS/Desktop/openserver/ospanel/domains/Sataman/rikmin/.htpasswd
-Require valid-user
